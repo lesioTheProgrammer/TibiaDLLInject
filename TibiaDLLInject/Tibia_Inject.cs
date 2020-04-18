@@ -17,7 +17,7 @@ namespace TibiaDLLInject
 
         public Tibia_Inject(Process proc)
         {
-            this.m_cHandle = proc.Handle;
+            this.m_cHandle = proc.Handle; // cHandle changes during program runtime
             this.m_baseAddress = proc.MainModule.BaseAddress;
             this.m_cHWND = proc.MainWindowHandle;
         }

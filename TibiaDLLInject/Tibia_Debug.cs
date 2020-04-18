@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace TibiaDLLInject
@@ -17,8 +18,6 @@ namespace TibiaDLLInject
 
         public static void Log(string msg)
         {
-
-            m_logSpace.Text = "";
             m_logSpace.Text += DateTime.Now + "::" + msg + "\n";
         }
 
