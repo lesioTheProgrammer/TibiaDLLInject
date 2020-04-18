@@ -7,13 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <RichTextBox x:Name="tibiaReader" TextChanged="tibiaReader_TextChanged">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="35,29,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="715" Height="175"/>
+        <ListBox x:Name="listBox" Margin="35,240,565,145"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="275,240,0,0" VerticalAlignment="Top" Width="90" Click="button_Click"/>
+        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="275,274,0,0" VerticalAlignment="Top" Width="90" Click="button1_Click"/>
     </Grid>
 </Window>
