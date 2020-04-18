@@ -17,6 +17,7 @@ namespace TibiaDLLInject
 
         public static void Log(string msg)
         {
+
             m_logSpace.Text = "";
             m_logSpace.Text += DateTime.Now + "::" + msg + "\n";
         }
