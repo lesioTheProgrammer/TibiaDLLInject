@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TibiaDLLInject
+
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
