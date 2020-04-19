@@ -65,8 +65,9 @@ namespace TibiaDLLInject
         private  void button1_Click(object sender, RoutedEventArgs e)
         {
             GetChangingIndexOfProcess();
-            var task = RefresItems(TimeSpan.FromSeconds(1));
+            var task = RefresItems(TimeSpan.FromSeconds(0.5));
             button1.IsEnabled = false;
+            button.Content = "Stop the bot";
         }
 
 
@@ -79,6 +80,7 @@ namespace TibiaDLLInject
                 GetChangingIndexOfProcess();
                 onBotRefresh(m_client.cHandle, m_client.baseAddress);
                 await Task.Delay(interval);
+                Tibia_Debug.ClearLogConsole();
             }
         }
 
@@ -95,8 +97,6 @@ namespace TibiaDLLInject
              Tibia_Debug.Log(mp.ToString());
              Tibia_Debug.Log(hp_max.ToString());
              Tibia_Debug.Log(mp_max.ToString());
-
-            Tibia_Debug.Log("End of stage");
         }
     }
 }
