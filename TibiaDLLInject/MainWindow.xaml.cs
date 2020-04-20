@@ -31,6 +31,7 @@ namespace TibiaDLLInject
             InitializeComponent();
             Tibia_Debug.SetLogSpace(this.textBox);
             memory_reader = new Tibia_Memory_Reader();
+            button2.IsEnabled = false;
         }
         // global Variables:
         #region
@@ -67,7 +68,9 @@ namespace TibiaDLLInject
             GetChangingIndexOfProcess();
             var task = RefresItems(TimeSpan.FromSeconds(0.5));
             button1.IsEnabled = false;
+            button2.IsEnabled = true;
             button.Content = "Stop the bot";
+
         }
 
 
