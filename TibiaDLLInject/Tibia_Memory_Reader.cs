@@ -90,12 +90,7 @@ namespace TibiaDLLInject
             return buffer;
         }
 
-
-      
-
         #endregion
-
-
 
         // theres issue with this class, get weird after some time
         public int GetHealth(IntPtr pHandle, Int32 address)
@@ -140,12 +135,6 @@ namespace TibiaDLLInject
             }
             return valueToReturn;
         }
-
-
-        //public string GetArmorFromList(IntPtr pHandle, Int32 address)
-        //{
-        //    return ConvertHexToString(GetString(pHandle, address + (int)ADDRESSES.ArmorAddress));
-        //}
 
         public IList<string> GetFirstDialogBoxList(IntPtr pHandle, Int32 address)
         {
