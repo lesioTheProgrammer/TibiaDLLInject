@@ -52,13 +52,10 @@ namespace TibiaDLLInject
             {
                 var procesID = Process.GetCurrentProcess().Id;
                 var errorCode =  GetLastError();
-                //var OpeningProcess = OpenProcess(ProcessAccessFlags.All, false, procesID);
                 Tibia_Debug.Log("Error code");
                 Tibia_Debug.Log("\n" + errorCode);
-                //Tibia_Debug.Log("\n" + OpeningProcess);
                 return buffer;
             }
-
             return buffer;
         }
 
@@ -67,10 +64,42 @@ namespace TibiaDLLInject
             return BitConverter.ToInt32(ReadBytes(pHandle, new IntPtr(address), 4), 0);
         }
 
+
+        public string GetString(IntPtr pHandle, Int32 address)
+        {
+            return BitConverter.ToString(ReadBytes(pHandle, new IntPtr(address), 30), 0);
+        }
+
+        // for long items
+        #region
+        private byte[] ReadBytesLong(IntPtr pHandle, IntPtr address, int bytesToRead)
+        {
+            int bytesRead = 0;
+            byte[] buffer = new byte[bytesToRead];
+            ReadProcessMemory(pHandle, address, buffer, bytesToRead, ref bytesRead);
+
+            // error handling
+            if (buffer[0] == 0)
+            {
+                var procesID = Process.GetCurrentProcess().Id;
+                var errorCode = GetLastError();
+                Tibia_Debug.Log("Error code");
+                Tibia_Debug.Log("\n" + errorCode);
+                return buffer;
+            }
+            return buffer;
+        }
+
+
+      
+
+        #endregion
+
+
+
         // theres issue with this class, get weird after some time
         public int GetHealth(IntPtr pHandle, Int32 address)
         {
-            //Tibia_Debug.Log("Get health from memory reader \n" + "\n" + "\n");
             return GetInt32(pHandle, address + (int)ADDRESSES.HealthAddress) ^
                   GetInt32(pHandle, address + (int)ADDRESSES.XORAddress);
         }
@@ -89,6 +118,56 @@ namespace TibiaDLLInject
         {
             return GetInt32(pHandle, address + (int)ADDRESSES.MaxManaAddress) ^
                   GetInt32(pHandle, address + (int)ADDRESSES.XORAddress);
+        }
+
+
+        private string ConvertHexToString(string hexString)
+        {
+            string valueToReturn = "";
+            string[] hexValuesSplit = hexString.Split('-');
+
+            foreach (String hex in hexValuesSplit)
+            {
+                // Convert the number expressed in base-16 to an integer. 
+                int value = Convert.ToInt32(hex, 16);
+                // Get the character corresponding to the integral value. 
+                char charValue = (char)value;
+                if (charValue.ToString() == "\0")
+                {
+                    break;
+                }
+                valueToReturn += charValue;
+            }
+            return valueToReturn;
+        }
+
+
+        //public string GetArmorFromList(IntPtr pHandle, Int32 address)
+        //{
+        //    return ConvertHexToString(GetString(pHandle, address + (int)ADDRESSES.ArmorAddress));
+        //}
+
+        public IList<string> GetFirstDialogBoxList(IntPtr pHandle, Int32 address)
+        {
+
+            var listOfItemsMArket = new List<string>();
+            var listAddresses = GetMarketTopEnums.ListOfTopLeftMarket();
+            int i = 0;
+            foreach (var item in listAddresses)
+            {
+                try
+                {
+                    listOfItemsMArket.Add(ConvertHexToString(GetString(pHandle,
+                        address + (int)listAddresses[i])) );
+                    i++;
+                }
+                catch (Exception ex)
+                {
+                    var exMessage = ex.Message;
+                    throw;
+                }
+            }
+            return listOfItemsMArket;
         }
 
     }

@@ -98,5 +98,15 @@ namespace TibiaDLLInject
              Tibia_Debug.Log(hp_max.ToString());
              Tibia_Debug.Log(mp_max.ToString());
         }
+
+
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            // get items from first market dropdown
+            GetChangingIndexOfProcess();
+            listBox3.ItemsSource = memory_reader.GetFirstDialogBoxList(m_client.cHandle,
+                (Int32)m_client.baseAddress);
+        }
     }
 }

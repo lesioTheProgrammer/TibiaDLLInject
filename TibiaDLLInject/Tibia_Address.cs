@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TibiaDLLInject
 {
-    public enum ADDRESSES : int
+    public enum ADDRESSES : long
     {
         // old and bad adresses
 
@@ -33,6 +33,38 @@ namespace TibiaDLLInject
         WeaponCountAddress = 0x7B14FC,
         WeaponTypeAddress = 0x7B1500,
         LevelAddress = 0x570470,
-        ExperienceAddress = 0x570460
+        ExperienceAddress = 0x570460,
+
+        MarketFirstSelectListAddress = 0x196622, // guessing?
+
+        // gathering addreses of tibia market items
+
+        MarketWindowTopLeft = 0x7FFDF13BB9E8, //gorny sa w long wpisane
+
+
+        ArmorAddress = 0x74FA00,
+        FoodAddress = 0x74FA00 - 0x30,
+
+
+
+
+        MarketWindowLeftBottom = 0x7FFDF13BB9F0 // dolny
+
+
+
+
     }
+
+    public static class GetMarketTopEnums
+    {
+        public static List<ADDRESSES> ListOfTopLeftMarket()
+        {
+            var list = new List<ADDRESSES>();
+            list.Add(ADDRESSES.ArmorAddress);
+            list.Add(ADDRESSES.FoodAddress);
+            return list;
+        }
+    }
+    
+
 }

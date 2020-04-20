@@ -1,0 +1,4 @@
+﻿Error list:
+
+TibiaDebug log error code nr 6: Select the right process id or reselect it again
+
