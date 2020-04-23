@@ -26,8 +26,5 @@ namespace TibiaDLLInject.Injecting
         {
             return Process.GetProcessesByName(name)[index];
         }
-
-
-
     }
 }

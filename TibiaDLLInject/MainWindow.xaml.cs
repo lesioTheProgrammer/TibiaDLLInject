@@ -38,9 +38,9 @@ namespace TibiaDLLInject
         // global Variables:
         #region
         bool _stopAsyncTask = true;
-
         TibiaProcess tibia_process = new TibiaProcess();
         Tibia_Memory_Reader memory_reader;
+        Injector_Using_Dll _instance = new Injector_Using_Dll();
         #endregion
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -87,10 +87,7 @@ namespace TibiaDLLInject
             int hp_max = memory_reader.GetMaxHealth(cHandle, (Int32)baseAddr);
             int mp_max = memory_reader.GetMaxMana(cHandle, (Int32)baseAddr);
 
-            if (checkBox.IsChecked == true)
-            {
-                healthChecker(hp, hp_max);
-            }
+           
 
              Tibia_Debug.Log(hp.ToString());
              Tibia_Debug.Log(mp.ToString());
@@ -108,19 +105,13 @@ namespace TibiaDLLInject
                 (Int32)tibiaInjectedm_client.baseAddress);
         }
 
-
-        private void healthChecker(int _hp, int _hpmax)
+        private void button3_Click(object sender, RoutedEventArgs e)
         {
-            // bieda klawiszowa do tego nie dzialajaca xddd
-            int _hpBar1;
-            int _hpBar2;
-            if (!int.TryParse(textBox1.Text, out _hpBar1))
-                _hpBar1 = int.MaxValue;
+            var tibiaInjectedm_client = tibia_process.GetChangingIndexOfProcess(listBox.SelectedIndex);
+            string processName = "tibia";
+            int index = listBox.SelectedIndex;
+            _instance.Inject(processName, index);
 
-            if (!int.TryParse(textBox2.Text, out _hpBar2))
-                _hpBar2 = int.MaxValue;
-
-           
         }
     }
 }

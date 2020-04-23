@@ -1,5 +1,5 @@
 ========================================================================
-    DYNAMIC LINK LIBRARY : exTibiaDLL Project Overview
+	DYNAMIC LINK LIBRARY : exTibiaDLL Project Overview
 ========================================================================
 
 AppWizard has created this exTibiaDLL DLL for you.
@@ -9,20 +9,20 @@ make up your exTibiaDLL application.
 
 
 exTibiaDLL.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
+	This is the main project file for VC++ projects generated using an Application Wizard.
+	It contains information about the version of Visual C++ that generated the file, and
+	information about the platforms, configurations, and project features selected with the
+	Application Wizard.
 
 exTibiaDLL.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
+	This is the filters file for VC++ projects generated using an Application Wizard. 
+	It contains information about the association between the files in your project 
+	and the filters. This association is used in the IDE to show grouping of files with
+	similar extensions under a specific node (for e.g. ".cpp" files are associated with the
+	"Source Files" filter).
 
 exTibiaDLL.cpp
-    This is the main DLL source file.
+	This is the main DLL source file.
 
 	When created, this DLL does not export any symbols. As a result, it
 	will not produce a .lib file when it is built. If you wish this project
@@ -36,8 +36,8 @@ exTibiaDLL.cpp
 Other standard files:
 
 StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named exTibiaDLL.pch and a precompiled types file named StdAfx.obj.
+	These files are used to build a precompiled header (PCH) file
+	named exTibiaDLL.pch and a precompiled types file named StdAfx.obj.
 
 /////////////////////////////////////////////////////////////////////////////
 Other notes:

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using TibiaDLLInject.NativeMethods;
 
 namespace TibiaDLLInject.Injecting
 {
@@ -31,6 +32,8 @@ namespace TibiaDLLInject.Injecting
 
         public bool Inject(string filename)
         {
+
+            // I have to find dll later on ;c
             if (!File.Exists(filename))
             {
                 throw new FileNotFoundException("Dll to inject does not exist: " + filename);
