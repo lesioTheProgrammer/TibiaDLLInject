@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TibiaDLLInject
 {
-    class Tibia_Inject
+     public class Tibia_Inject
     {
         private readonly IntPtr m_cHandle;
         private readonly IntPtr m_baseAddress;
@@ -15,6 +15,7 @@ namespace TibiaDLLInject
         public IntPtr baseAddress { get { return m_baseAddress; } }
         public IntPtr cHWND { get { return m_cHWND; } }
 
+        
         public Tibia_Inject(Process proc)
         {
             this.m_cHandle = proc.Handle; // cHandle changes during program runtime
