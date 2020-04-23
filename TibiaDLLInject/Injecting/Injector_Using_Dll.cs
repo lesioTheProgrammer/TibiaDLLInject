@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TibiaDLLInject.NativeMethods;
+using System.IO;
 
 namespace TibiaDLLInject.Injecting
 {
@@ -24,10 +22,10 @@ namespace TibiaDLLInject.Injecting
         public void Inject(string processName, int index)
         {
             TibiaProcess tibiaProcess = new TibiaProcess();
-            var xd  = tibiaProcess.GetfProcess(processName, index);
+            var TibianProcess  = tibiaProcess.GetfProcess(processName, index);
 
             string dllPath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath.ToString(), "exCore.dll");
-            ProcessHandle = NativeMethods.OpenProcess(NativeMethods.PROCESS_ALL_ACCESS, 0, (uint)GameClient.Process.Id);
+            ProcessHandle = NativeMethods.NativeMethods.OpenProcess(NativeMethods.NativeMethods.PROCESS_ALL_ACCESS, 0, (uint)TibianProcess.Id);
             Inject(dllPath);
         }
 
@@ -38,27 +36,27 @@ namespace TibiaDLLInject.Injecting
                 throw new FileNotFoundException("Dll to inject does not exist: " + filename);
             }
 
-            IntPtr remoteAddress = NativeMethods.VirtualAllocEx(
+            IntPtr remoteAddress = NativeMethods.NativeMethods.VirtualAllocEx(
                 ProcessHandle,
                 IntPtr.Zero,
                 (uint)filename.Length,
-                NativeMethods.AllocationType.Commit | NativeMethods.AllocationType.Reserve,
-                NativeMethods.MemoryProtection.ExecuteReadWrite);
+                NativeMethods.NativeMethods.AllocationType.Commit | NativeMethods.NativeMethods.AllocationType.Reserve,
+                NativeMethods.NativeMethods.MemoryProtection.ExecuteReadWrite);
 
             Memory.WriteStringNoEncoding(ProcessHandle, remoteAddress.ToInt32(), filename);
 
-            IntPtr thread = NativeMethods.CreateRemoteThread(
+            IntPtr thread = NativeMethods.NativeMethods.CreateRemoteThread(
                 ProcessHandle, IntPtr.Zero, 0,
-                NativeMethods.GetProcAddress(NativeMethods.GetModuleHandle("Kernel32"), "LoadLibraryA"),
+                NativeMethods.NativeMethods.GetProcAddress(NativeMethods.NativeMethods.GetModuleHandle("Kernel32"), "LoadLibraryA"),
                 remoteAddress, 0, IntPtr.Zero);
 
-            NativeMethods.WaitForSingleObject(thread, 0xFFFFFFFF);
+            NativeMethods.NativeMethods.WaitForSingleObject(thread, 0xFFFFFFFF);
 
-            NativeMethods.VirtualFreeEx(
+            NativeMethods.NativeMethods.VirtualFreeEx(
                 ProcessHandle,
                 remoteAddress,
                 (uint)filename.Length,
-                NativeMethods.AllocationType.Release);
+                NativeMethods.NativeMethods.AllocationType.Release);
 
             return thread.ToInt32() > 0 && remoteAddress.ToInt32() > 0;
         }
