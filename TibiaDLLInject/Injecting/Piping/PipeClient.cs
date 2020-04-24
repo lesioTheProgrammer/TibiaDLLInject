@@ -10,12 +10,12 @@ namespace TibiaDLLInject.Injecting.Piping
 
         #region Singleton
 
-        static readonly PipeClient _instance = new PipeClient();
+        //static readonly PipeClient _instance = new PipeClient();
 
-        public static PipeClient Instance
-        {
-            get { return _instance; }
-        }
+        //public static PipeClient Instance
+        //{
+        //    get { return _instance; }
+        //}
 
         #endregion
 
@@ -43,10 +43,9 @@ namespace TibiaDLLInject.Injecting.Piping
 
         #region Constructor
 
-        public PipeClient()
+        public PipeClient(int gameClientProcessId)
         {
-
-            PipeName = string.Format("exTibiaC{0}", GameClient.Process.Id);
+            PipeName = string.Format("exTibiaC{0}", gameClientProcessId);
             Pipe = new NamedPipeClientStream(".", PipeName, PipeDirection.InOut);
         }
 

@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using System.Text;
+using TibiaDLLInject.Injecting.Packets;
 
 namespace TibiaDLLInject.Injecting.Piping
 {
     public class PipeServer
     {
         #region Singleton
+
+        // to put processID later on??
+        TibiaProcess tibia_process = new TibiaProcess();
+
 
         private static PipeServer _instance = new PipeServer();
 
@@ -58,9 +63,9 @@ namespace TibiaDLLInject.Injecting.Piping
 
         #region Constructor
 
-        public PipeServer()
+        public PipeServer(int gameClientProcessId)
         {
-            PipeName = string.Format("exTibiaS{0}", GameClient.Process.Id);
+            PipeName = string.Format("exTibiaS{0}", gameClientProcessId);
             Pipe = new NamedPipeServerStream(PipeName, PipeDirection.InOut, -1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
             OnReceive += new PipeListener(PipeServer_OnReceive);
             Pipe.BeginWaitForConnection(new AsyncCallback(BeginWaitForConnection), null);

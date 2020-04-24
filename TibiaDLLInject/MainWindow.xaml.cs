@@ -17,6 +17,7 @@ using System.Windows.Forms.Integration;
 using System.Threading;
 using System.Windows.Forms;
 using TibiaDLLInject.Injecting;
+using TibiaDLLInject.Injecting.Piping;
 
 namespace TibiaDLLInject
 
@@ -111,6 +112,8 @@ namespace TibiaDLLInject
             string processName = "tibia";
             int index = listBox.SelectedIndex;
             _instance.Inject(processName, index);
+
+            PipeServer.
 
         }
     }

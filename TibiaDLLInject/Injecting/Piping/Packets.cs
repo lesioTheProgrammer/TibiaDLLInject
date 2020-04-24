@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using TibiaDLLInject.Injecting.Enums;
+using TibiaDLLInject.Injecting.Packets;
 
 namespace TibiaDLLInject.Injecting.Piping
 {
@@ -58,8 +63,8 @@ namespace TibiaDLLInject.Injecting.Piping
         {
             OnPacketReceived(new PacketReceivedEventArgs(p));
             if (p.Type == PacketType.ContainerOpen)
-                Helpers.Debug.WriteLine("Container has been opened", ConsoleColor.Red);
-            Helpers.Debug.WriteLine(string.Format("Lenght: {0} Packet: {1}", p.Length, p.Body.ToStringFast()), ConsoleColor.DarkBlue);
+                Tibia_Debug.Log("Container has been opened", ConsoleColor.Red);
+            Tibia_Debug.Log(string.Format("Lenght: {0} Packet: {1}", p.Length, p.Body.ToString()), ConsoleColor.DarkBlue);
         }
 
         public bool WaitForPacket(PacketType packettype, int maxTime)
