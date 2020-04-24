@@ -7,9 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="35,29,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="715" Height="175"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="35,29,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="365" Height="175"/>
         <ListBox x:Name="listBox" Margin="35,240,565,145"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="275,240,0,0" VerticalAlignment="Top" Width="90" Click="button_Click"/>
-        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="275,274,0,0" VerticalAlignment="Top" Width="90" Click="button1_Click"/>
+        <Button x:Name="button" Content="Press and select character" HorizontalAlignment="Left" Margin="275,240,0,0" VerticalAlignment="Top" Width="90" Click="button_Click"/>
+        <Button x:Name="button1" Content="Run bot" HorizontalAlignment="Left" Margin="275,274,0,0" VerticalAlignment="Top" Width="90" Click="button1_Click"/>
+        <Button x:Name="button2" Content="Gather market dropdown" HorizontalAlignment="Left" Margin="432,39,0,0" VerticalAlignment="Top" Click="button2_Click"/>
+        <ListBox x:Name="listBox3" HorizontalAlignment="Left" Height="140" Margin="432,64,0,0" VerticalAlignment="Top" Width="138"/>
     </Grid>
 </Window>

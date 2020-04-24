@@ -26,6 +26,16 @@ namespace TibiaDLLInject
             m_logSpace = lSpace;
         }
 
+        public static void ClearLogConsole()
+        {
+            m_logSpace.Clear();
+        }
+
+        public static void Log<T>(string msg, T key)
+        {
+            m_logSpace.Text += DateTime.Now + "::" + msg + "\n";
+        }
+
 
     }
 
