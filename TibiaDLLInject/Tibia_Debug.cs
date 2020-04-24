@@ -36,6 +36,11 @@ namespace TibiaDLLInject
             m_logSpace.Text += DateTime.Now + "::" + msg + "\n";
         }
 
+        public static void LogExcepction(Exception ex)
+        {
+            m_logSpace.Text += "Exception: " + ex.ToString() + "\n";
+        }
+
 
     }
 
