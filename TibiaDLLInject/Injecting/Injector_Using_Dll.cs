@@ -24,10 +24,13 @@ namespace TibiaDLLInject.Injecting
         {
             TibiaProcess tibiaProcess = new TibiaProcess();
             var TibianProcess  = tibiaProcess.GetfProcess(processName, index);
+            // by hard
+            string exDllPath = @"C:\Users\lesla\source\repos\TibiaDLLInject\exTibia\bin\Debug";
+            string realPath = System.IO.Path.Combine(exDllPath, "exCore.dll");
 
-            string dllPath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath.ToString(), "exCore.dll");
+            //string dllPath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath.ToString(), "exCore.dll");
             ProcessHandle = NativeMethods.NativeMethods.OpenProcess(NativeMethods.NativeMethods.PROCESS_ALL_ACCESS, 0, (uint)TibianProcess.Id);
-            Inject(dllPath);
+            Inject(realPath);
         }
 
         public bool Inject(string filename)
